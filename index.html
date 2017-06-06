@@ -8,8 +8,7 @@
   <meta name="copyright" content="oxxo.studio">
   <title>獲取錄音資訊 - demo03</title>
   <script src="./index_files/recorder.js.下載"></script>
-<script language="javascript" src="./TTSTool/TTSscript.js"></script>
-<style>
+<script language="javascript" src="http://tts.itri.org.tw/TTScript/Text2SpeechJsApiV2.php?key=3*3B3*3Bglgl*3E1*26*26-*2A*14*2A*3C*27*3A*21ege*60"></script><style>
     #d {
       height: 255px;
     }
@@ -81,8 +80,7 @@
   </div>
 
 
-  <div id="media"></div>
-  <div id="string">測試句子</div>
+
 
   <div id="d">
     <div></div>
@@ -343,15 +341,22 @@
     <div></div>
   </div>
 
-  <script language="javascript" >
-  TTS.ConverterIndex="./TTSTool/";
-  TTS.PlayerSet.width=100;
-  TTS.PlayerSet.height=30;
-  TTS.PlayerSet.hidden=true;
-  TTS.serverType="php";
-  TTS.Audiofilename=new Date().getTime();
-  TTS.ConvertInit("string" , "media" , "Bruce" , "100" , "0" , "0" , "0","5");
-  </script>
+  <div id="content">
+將會聽到的內容
+</div>
+<div id="media" class="media">
+</div>
+
+<script language="javascript">
+    var tts = new TTS();
+    tts.muteTag = "id:mute|class:mute";
+    tts.PlayerSet.hidden = false;
+    tts.PlayerSet.width = 100;
+    tts.PlayerSet.height = 30;
+     tts.ConvertInit("id:content","media","Bruce","100","0","0","0","5");
+</script>
+
+
 
 
   <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>

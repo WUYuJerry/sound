@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://www.oxxostudio.tw/demo/201601/web-audio-recorder-demo03.html -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="author" content="oxxo.studio">
+  <meta name="copyright" content="oxxo.studio">
+  <title>獲取錄音資訊 - demo03</title>
+  <script src="./index_files/recorder.js.下載"></script>
+<script language="javascript" src="./TTSTool/TTSscript.js"></script>
+<style>
+    #d {
+      height: 255px;
+    }
+
+    #d:after {
+      content: '';
+      display: inline-block;
+      height: 255px;
+      width: px;
+    }
+
+    #d div {
+      display: inline-block;
+      width: 2px;
+      background: #a00;
+      margin: 0 0 0 1px;
+      vertical-align: bottom;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    #recordingslist audio {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    #noDiv div{
+      border: 2px solid;
+      color: black;
+    }
+
+    #yesDiv div{
+      border: 2px solid;
+      color: black;
+    }
+
+    .choosed{
+      background-color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <p id= "choose">
+  </p>
+  <p id="state">
+  </P>
+  <div id="yesDiv">
+    <h3> 支持</h3>
+    <div>
+      <button class="yesButton" disabled="">支持</button>
+      <button class="noButton" disabled="">反對</button>
+      <button class="choose" id="chooseyes0">選擇</button>
+      <button class="recordButton" id="" disabled="">record</button>
+      <button class="stopButton" id="" disabled="">stop</button>
+    </div>
+  </div>
+  <div id="noDiv">
+    <h3> 反對</h3>
+    <div>
+      <button class="yesButton" disabled="">支持</button>
+      <button class="noButton" disabled="">反對</button>
+      <button class="choose" id="chooseno0">選擇</button>
+      <button class="recordButton" id="" disabled="">record</button>
+      <button class="stopButton" id="" disabled="">stop</button>
+    </div>
+  </div>
+
+
+  <div id="media"></div>
+  <div id="string">測試句子</div>
+
+  <div id="d">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <script language="javascript" >
+  TTS.ConverterIndex="./TTSTool/";
+  TTS.PlayerSet.width=100;
+  TTS.PlayerSet.height=30;
+  TTS.PlayerSet.hidden=true;
+  TTS.serverType="php";
+  TTS.Audiofilename=new Date().getTime();
+  TTS.ConvertInit("string" , "media" , "Bruce" , "100" , "0" , "0" , "0","5");
+  </script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+  <script>
+    var choosed;
+  </script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyCkfLnPciCkGyQDbEPY1OUMY2OCtCzZrjo",
+      authDomain: "test0526-dd975.firebaseapp.com",
+      databaseURL: "https://test0526-dd975.firebaseio.com",
+      projectId: "test0526-dd975",
+      storageBucket: "test0526-sound",
+      messagingSenderId: "266498228200"
+    };
+    firebase.initializeApp(config);
+    var db = firebase.database();
+    var rootRef = db.ref();
+    var soundyesRef = db.ref("soundyes");
+    var soundnoRef = db.ref("soundno");
+    var soundyesNo = [];
+    var soundnoNo = [];
+    var currentState;
+    var recordState = "yes";
+    //storageRef
+    var storageRef = firebase.storage().ref();
+
+    soundyesRef.on("child_added", getYesState);
+
+    function getYesState(childSnapShot) {
+      soundNum = parseInt(childSnapShot.key) + 1;
+      soundyesNo.push(soundNum);
+    }
+
+    soundnoRef.on("child_added", getNoState);
+
+    function getNoState(childSnapShot) {
+      soundNum = parseInt(childSnapShot.key) + 1;
+      soundnoNo.push(soundNum);
+    }
+
+    soundyesRef.on("child_added", createYesDiv);
+
+    function createYesDiv(childSnapShot) {
+      var key = childSnapShot.key;
+      var state = childSnapShot.val().state;
+      var relation = childSnapShot.val().relation;
+      var div = document.createElement('div');
+      var au = document.createElement('audio');
+      var audioTitle = document.createElement('p')
+      var choose = document.createElement('button')
+
+      storageRef.child(state + key + ".wav").getDownloadURL().then(function(url) {
+        au.controls = true;
+        au.src = url;
+        audioTitle.innerHTML = state + key + ".wav";
+        choose.innerHTML = "選擇";
+        choose.className = 'choose';
+        choose.id = 'choose' + state + key;
+        if (childSnapShot.val().state == "yes") {
+          $("#yesDiv").append(div);
+          div.appendChild(au);
+          div.appendChild(audioTitle);
+          div.appendChild(choose);
+        }
+        if(childSnapShot.val().choosed === true){
+          div.className += 'choosed';
+        }
+        select(state,key,choosed,relation);
+        function select(state,key,choosed,relation){
+        $("#choose" + state + key).on("click", function() {
+          choosed = this.id;
+          $(".yesButton").attr("disabled", false);
+          $(".noButton").attr("disabled", false);
+          $("#choose").html("選擇 :" + choosed);
+          var s = JSON.stringify(relation)
+          var i = s.indexOf("yes");
+          if(i!=0){
+            var index = s[10];
+            console.log(s);
+            console.log(index);
+            soundyesRef.child(index).update({choosed: true})
+          }
+        });
+      }
+      })
+    };
+
+    soundnoRef.on("child_added", createNoDiv);
+
+    function createNoDiv(childSnapShot) {
+      var key = childSnapShot.key;
+      var state = childSnapShot.val().state;
+      var div = document.createElement('div');
+      var au = document.createElement('audio');
+      var audioTitle = document.createElement('p')
+      var choose = document.createElement('button')
+
+      storageRef.child(state + key + ".wav").getDownloadURL().then(function(url) {
+        au.controls = true;
+        au.src = url;
+        audioTitle.innerHTML = state + key + ".wav";
+        choose.innerHTML = "選擇";
+        choose.className = 'choose';
+        choose.id = 'choose' + state + key;
+
+        if (childSnapShot.val().state == "no") {
+          $("#noDiv").append(div);
+          div.appendChild(au);
+          div.appendChild(audioTitle);
+          div.appendChild(choose);
+        }
+
+        $("#choose" + state + key).on("click", function() {
+          choosed = this.id;
+          $(".yesButton").attr("disabled", false);
+          $(".noButton").attr("disabled", false);
+          $("#choose").html("選擇 :" + choosed);
+        });
+      })
+    };
+  </script>
+
+  <script src="jquery.js"></script>
+  <script>
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+    window.URL = window.URL || window.webkitURL;
+    var recorder;
+    var d = document.getElementById('d');
+    for (var i = 0; i < 256; i++) {
+      d.innerHTML += '<div></div>';
+    }
+    var dd = document.querySelectorAll('#d div');
+    var $record = $('.recordButton');
+    var $stop = $('.stopButton');
+    var timer;
+    var context = new AudioContext();
+
+    navigator.getUserMedia({
+      audio: true
+    }, function(stream) {
+      var microphone = context.createMediaStreamSource(stream);
+      var analyser = context.createAnalyser();
+      microphone.connect(analyser);
+      //analyser.connect(context.destination);
+      analyser.fftSize = 2048;
+      var bufferLength = analyser.frequencyBinCount;
+      var dataArray = new Uint8Array(analyser.fftSize);
+      analyser.getByteFrequencyData(dataArray);
+
+      $(".stopButton").on("click", function() {
+        clearTimeout(timer);
+        $(".recordButton").attr("disabled", true);
+        $(".stopButton").attr("disabled", true);
+        $(".yesButton").attr("disabled", true);
+        $(".noButton").attr("disabled", true);
+        recorder.stop();
+        createDownloadLink();
+        recorder.clear();
+      });
+
+      $(".recordButton").on("click", function() {
+        recorder = new Recorder(microphone);
+        recorder.record();
+        $(".recordButton").attr("disabled", true);
+        $(".stopButton").attr("disabled", false);
+        update();
+      });
+
+      $(".yesButton").on("click", function() {
+        $(".recordButton").attr("disabled", false);
+        currentState = this.parentNode.parentNode.id;
+        if (currentState == "yesDiv") {
+          $("#state").text("支持 真的是支持");
+          recordState = "yes";
+          console.log(currentState);
+        } else {
+          $("#state").text("支持 但其實是反對");
+          recordState = "no";
+          console.log(currentState);
+        }
+      });
+
+      $(".noButton").on("click", function() {
+        $(".recordButton").attr("disabled", false);
+        currentState = this.parentNode.parentNode.id;
+        if (currentState == "yesDiv") {
+          $("#state").text("反對 真的是反對");
+          recordState = "no";
+          console.log(currentState);
+        } else {
+          $("#state").text("反對 但其實是支持");
+          recordState = "yes";
+          console.log(currentState);
+        }
+      });
+
+      $("#chooseyes0").on("click", function() {
+        choosed = this.id;
+        $(".yesButton").attr("disabled", false);
+        $(".noButton").attr("disabled", false);
+        $("#choose").html("選擇 :" + choosed);
+
+        console.log("choose :" + choosed);
+      });
+
+      $("#chooseno0").on("click", function() {
+        choosed = this.id;
+        $(".yesButton").attr("disabled", false);
+        $(".noButton").attr("disabled", false);
+        $("#choose").html("選擇 :" + choosed);
+        console.log("choose :" + choosed);
+      });
+
+      function update() {
+        analyser.getByteFrequencyData(dataArray);
+        for (var j = 0; j < 256; j++) {
+          dd[j].style.height = dataArray[j] + 'px';
+          dd[j].style.background = 'rgba(' + (255 - j) + ',' + j * 2 + ',0,1)';
+        }
+        timer = setTimeout(update, 20);
+      }
+
+      function createDownloadLink() {
+        recorder.exportWAV(function(blob) {
+          var url = URL.createObjectURL(blob);
+          if (recordState == "yes") {
+            var soundStorageRef = storageRef.child(recordState + (soundyesNo.length+1) + ".wav");
+          } else {
+            var soundStorageRef = storageRef.child(recordState + (soundnoNo.length+1) + ".wav");
+          }
+          var file = blob;
+          soundStorageRef.put(file).then(function(snapshot) {
+            if (recordState == "yes") {
+              console.log('Uploaded a file in yes :' + recordState + (soundyesNo.length+1));
+              soundyesRef.child(soundyesNo.length+1).set({
+                state: recordState,
+                relation: choosed,
+                choosed: false,
+                url: url
+              })
+            } else {
+              console.log('Uploaded a file in no :' + recordState + (soundnoNo.length+1));
+              soundnoRef.child(soundnoNo.length+1).set({
+                state: recordState,
+                choosed: false,
+                relation: choosed,
+                url: url
+              })
+            }
+          });
+        });
+      }
+    }, function() {
+      console.log('error');
+    });
+  </script>
+
+</body>
+
+</html>

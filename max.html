@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://www.oxxostudio.tw/demo/201601/web-audio-recorder-demo03.html -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="author" content="oxxo.studio">
+  <meta name="copyright" content="oxxo.studio">
+  <title>抓資料給max</title>
+  <script src="./index_files/recorder.js.下載"></script>
+
+</head>
+
+<body>
+
+  <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyCkfLnPciCkGyQDbEPY1OUMY2OCtCzZrjo",
+      authDomain: "test0526-dd975.firebaseapp.com",
+      databaseURL: "https://test0526-dd975.firebaseio.com",
+      projectId: "test0526-dd975",
+      storageBucket: "test0526-sound",
+      messagingSenderId: "266498228200"
+    };
+    firebase.initializeApp(config);
+    var db = firebase.database();
+    var rootRef = db.ref();
+    var soundyesRef = db.ref("soundyes");
+    var soundnoRef = db.ref("soundno");
+    var soundyesNo = [];
+    var soundnoNo = [];
+    var currentState;
+    var recordState = "yes";
+    //storageRef
+    var storageRef = firebase.storage().ref();
+
+    soundyesRef.on("child_added", getYesState);
+
+    function getYesState(childSnapShot) {
+      var state = childSnapShot.val().state;
+      var key = childSnapShot.key;
+      soundNum = parseInt(childSnapShot.key) + 1;
+      soundyesNo.push(soundNum);
+      storageRef.child("yes" + key + ".wav").getDownloadURL().then(function(url) {
+        createDownloadLink(url, state, key);
+      });
+    }
+    soundnoRef.on("child_added", getNoState);
+
+    function getNoState(childSnapShot) {
+      var state = childSnapShot.val().state;
+      var key = childSnapShot.key;
+      soundNum = parseInt(childSnapShot.key) + 1;
+      soundnoNo.push(soundNum);
+      storageRef.child("no" + key + ".wav").getDownloadURL().then(function(url) {
+        createDownloadLink(url, state, key);
+      });
+    };
+
+    function createDownloadLink(url, state, key) {
+      var hf = document.createElement('a');
+      hf.href = url;
+      hf.download = state + key;
+      hf.innerHTML = hf.download;
+
+      hf.click();
+      window.URL.revokeObjectURL(url);
+    };
+  </script>
+
+</body>
+
+</html>
